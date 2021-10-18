@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>PID Simulation</title>
+		<style>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+			td:nth-child(2) {
+				text-align: right;
+			}
+
+			table, td, th {
+				border: 1px solid black;
+			}
+
+			td {
+				padding: 5px;
+				width: 110px;
+			}
+			table {
+				border-collapse: collapse;
+				table-layout: fixed;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" style="border:1px solid black; float: left;"></canvas>
+		<div style="position: relative; left: 5px;">
+			<table>
+				<tr>
+					<td>Setpoint</td>
+					<td>230.00m</td>
+				</tr>
+				<tr>
+					<td>Altitude</td>
+					<td id="altitude"></td>
+				</tr>
+				<tr>
+					<td>Error</td>
+					<td id="error"></td>
+				</tr>
+				<tr>
+					<td>P</td>
+					<td id="p"></td>
+				</tr>
+				<tr>
+					<td>I</td>
+					<td id="i"></td>
+				</tr>
+				<tr>
+					<td>D</td>
+					<td id="d"></td>
+				</tr>
+				<tr>
+					<td>Motor Speed</td>
+					<td id="speed"></td>
+				</tr>
+				<tr>
+					<td>Velocity</td>
+					<td id="velocity"></td>
+				</tr>
+			</table>
+		</div>
+		<script src="canvas.js"></script>
+		<script src="timer.js"></script>
+		<script src="pid-controller.js"></script>
+		<script src="drone.js"></script>
+		<script src="pid-simulation.js"></script>
+	</body>
+</html>
