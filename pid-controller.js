@@ -4,7 +4,7 @@ class PIDController {
 	kD = 1.4;
 
 	error = 0;
-	lastError = 0;
+	prevError = 0;
 
 	p = 0;
 	i = 0;
@@ -15,11 +15,11 @@ class PIDController {
 	calculate(measurement, setpoint) {
 		this.error = setpoint - measurement;
 
-		this.p = this.kP * this.error/ setpoint;
+		this.p = this.kP * (this.error/ setpoint);
 		this.i += this.kI * this.error;
-		this.d = this.kD * (this.error - this.lastError);
+		this.d = this.kD * (this.error - this.prevError);
 
-		this.lastError = this.error;
+		this.prevError = this.error;
 
 		return this.p + this.i + this.d;
 	}
