@@ -1,7 +1,8 @@
 class Canvas {
-	constructor(width, height) {
-		this.width = width;
-		this.height = height;
+	width = 256;
+	height = 256;
+
+	constructor() {
 
 		var canvas = document.getElementById("canvas");
 		canvas.width = this.width
@@ -21,24 +22,24 @@ class Canvas {
 
 	draw(obj) {
 
-		this.ctx.drawImage(this.droneImg, 95, obj.yPos * -3 + 195, 64, 64);
+		this.ctx.drawImage(this.droneImg, 95, obj.yPos * -3 + 200, 64, 64);
 
 	}
 
 	drawLandscape() {
 		this.ctx.beginPath();
 		this.ctx.fillStyle = '#009A17';
-		this.ctx.fillRect(0, 236, 256, 16);
+		this.ctx.fillRect(0, 240, 256, 16);
 		this.ctx.stroke();
 
 		this.ctx.beginPath();
 		this.ctx.fillStyle = 'SkyBlue';
-		this.ctx.fillRect(0, 0, 256, 236)
+		this.ctx.fillRect(0, 0, 256, 240)
 	}
 
 	drawGoal() {
 		const goalWidth = 34;
-		const topOfGoal = 59;
+		const topOfGoal = 64;
 		const bottomOfGoal = topOfGoal + goalWidth;
 
 		this.ctx.beginPath();

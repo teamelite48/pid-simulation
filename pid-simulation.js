@@ -1,4 +1,4 @@
-var canvas = new Canvas(256, 252);
+var canvas = new Canvas();
 var timer = new Timer();
 var fps = 60;
 
@@ -39,7 +39,10 @@ function updateTelemetry() {
 	document.getElementById("p").innerText = `${pid.p.toFixed(2)}`;
 	document.getElementById("i").innerText = `${pid.i.toFixed(2)}`;
 	document.getElementById("d").innerText = `${pid.d.toFixed(2)}`;
-	document.getElementById("speed").innerText = `${drone.motorSpeed.toFixed(2)}`
+	document.getElementById("kPP").innerText = `${(pid.kP * pid.p).toFixed(2)}`;
+	document.getElementById("kII").innerText = `${(pid.kI * pid.i).toFixed(2)}`;
+	document.getElementById("kDD").innerText = `${(pid.kD * pid.d).toFixed(2)}`;
+	document.getElementById("output").innerText = `${pid.output.toFixed(2)}`
 
 	var velocity = drone.yVel - 9.8;
 
