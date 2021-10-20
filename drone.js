@@ -1,13 +1,10 @@
 class Drone {
 	maxVel = 15.8;
-	motorSpeed = 0;
 
 	constructor(){
-		this.xPos = 118,
+		this.xPos = 95,
 		this.yPos = 0,
-		this.yVel = 0,
-		this.width = 10,
-		this.height = 10
+		this.yVel = 0
 	}
 
 	setMotorSpeed(motorSpeed) {
@@ -18,8 +15,11 @@ class Drone {
 			motorSpeed = 1.0;
 		}
 
-		this.motorSpeed = motorSpeed
-		this.yVel = this.motorSpeed * this.maxVel;
+		this.yVel = motorSpeed * this.maxVel;
+
+		if (drone.yPos == 0 && velocity < 0) {
+			this.yVel = 0;
+		}
 	}
 
 	getAltitude() {

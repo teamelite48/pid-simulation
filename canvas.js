@@ -3,7 +3,6 @@ class Canvas {
 	height = 256;
 
 	constructor() {
-
 		var canvas = document.getElementById("canvas");
 		canvas.width = this.width
 		canvas.height = this.height;
@@ -14,14 +13,15 @@ class Canvas {
 		this.droneImg.src = "assets/drone.png";
 	}
 
-	clear() {
-		this.ctx.clearRect(0, 0, this.width, this.height);
+	draw(drone) {
+		this.clearCanvas();	
 		this.drawLandscape();
 		this.drawGoal();
+		this.drawDrone(drone)
 	}
 
-	draw(obj) {
-		this.ctx.drawImage(this.droneImg, 95, obj.yPos * -3 + 200, 64, 64);
+	clearCanvas() {
+		this.ctx.clearRect(0, 0, this.width, this.height);
 	}
 
 	drawLandscape() {
@@ -52,5 +52,9 @@ class Canvas {
 		this.ctx.moveTo(0, bottomOfGoal);
 		this.ctx.lineTo(512, bottomOfGoal);
 		this.ctx.stroke();
+	}
+
+	drawDrone(drone) {
+		this.ctx.drawImage(this.droneImg, drone.xPos, drone.yPos * -3 + 200, 64, 64);	
 	}
 }
