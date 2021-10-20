@@ -21,9 +21,7 @@ class Canvas {
 	}
 
 	draw(obj) {
-
 		this.ctx.drawImage(this.droneImg, 95, obj.yPos * -3 + 200, 64, 64);
-
 	}
 
 	drawLandscape() {

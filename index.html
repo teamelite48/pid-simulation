@@ -6,7 +6,7 @@
 		<title>PID Simulation</title>
 		<style>
 			body {
-				font-family: Menlo, Monaco, 'Courier New', monospace;
+				font-family: Consolas, Menlo, 'Courier New', monospace;
 			}
 			td:nth-child(2) {
 				text-align: right;
@@ -24,58 +24,86 @@
 				border-collapse: collapse;
 				table-layout: fixed;
 			}
+
+			.controls > div {
+				padding: 5px 0 5px 0
+			}
 		</style>
 	</head>
 	<body>
-		<canvas id="canvas" style="border:1px solid black; float: left;"></canvas>
-		<div style="position: relative; left: 5px;">
-			<table>
-				<tr>
-					<td>Setpoint</td>
-					<td id="setpoint"></td>
-				</tr>
-				<tr>
-					<td>Altitude</td>
-					<td id="altitude"></td>
-				</tr>
-				<tr>
-					<td>Error</td>
-					<td id="error"></td>
-				</tr>
-				<tr>
-					<td>P</td>
-					<td id="p"></td>
-				</tr>
-				<tr>
-					<td>I</td>
-					<td id="i"></td>
-				</tr>
-				<tr>
-					<td>D</td>
-					<td id="d"></td>
-				</tr>
-				<tr>
-					<td>kP * P</td>
-					<td id="kPP"></td>
-				</tr>
-				<tr>
-					<td>kI * I</td>
-					<td id="kII"></td>
-				</tr>
-				<tr>
-					<td>kD * D</td>
-					<td id="kDD"></td>
-				</tr>
-				<tr>
-					<td>Output</td>
-					<td id="output"></td>
-				</tr>
-				<tr>
-					<td>Velocity</td>
-					<td id="velocity"></td>
-				</tr>
-			</table>
+		<div style="display: flex;">
+			<div>
+				<canvas id="canvas" style="border:1px solid black;"></canvas>
+				<div class="controls">
+					<div>
+						<label>kP:</label>
+						<input id="kP" type="number">
+					</div>
+					<div>
+						<label>kI:</label>
+						<input id="kI" type="number">
+					</div>
+					<div>
+						<label>kD:</label>
+						<input id="kD" type="number">
+					</div>
+					<div>
+						<button type="button" style="width: 100%;" onclick="start()">Start</button>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div style="position: relative; left: 5px;">
+					<table>
+						<tr>
+							<td>Setpoint</td>
+							<td id="setpoint"></td>
+						</tr>
+						<tr>
+							<td>Altitude</td>
+							<td id="altitude"></td>
+						</tr>
+						<tr>
+							<td>Error</td>
+							<td id="error"></td>
+						</tr>
+						<tr>
+							<td>P</td>
+							<td id="p"></td>
+						</tr>
+						<tr>
+							<td>I</td>
+							<td id="i"></td>
+						</tr>
+						<tr>
+							<td>D</td>
+							<td id="d"></td>
+						</tr>
+						<tr>
+							<td>kP * P</td>
+							<td id="kPP"></td>
+						</tr>
+						<tr>
+							<td>kI * I</td>
+							<td id="kII"></td>
+						</tr>
+						<tr>
+							<td>kD * D</td>
+							<td id="kDD"></td>
+						</tr>
+						<tr>
+							<td>Output</td>
+							<td id="output"></td>
+						</tr>
+						<tr>
+							<td>Velocity</td>
+							<td id="velocity"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
 		</div>
+
 		<script src="canvas.js"></script>
 		<script src="timer.js"></script>
 		<script src="pid-controller.js"></script>

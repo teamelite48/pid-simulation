@@ -2,11 +2,25 @@ var canvas = new Canvas();
 var timer = new Timer();
 var fps = 60;
 
-var pid = new PIDController();
+var pid = new PIDController(0, 0, 0);
 var drone = new Drone();
 var setpoint = 50;
 
-setInterval(simulation, 1000/fps);
+var interval = setInterval(simulation, 1000/fps);
+
+
+function start() {
+	clearInterval(interval);
+
+	var kP = document.getElementById("kP").value;
+	var kI = document.getElementById("kI").value;
+	var kD = document.getElementById("kD").value;
+
+	timer = new Timer();
+	pid = new PIDController(kP, kI, kD);
+	drone = new Drone();
+	interval = setInterval(simulation, 1000/fps);
+}
 
 function simulation() {
 	var speed = pid.calculate(drone.getAltitude(), setpoint)
