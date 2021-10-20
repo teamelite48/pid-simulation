@@ -21,24 +21,24 @@ class Canvas {
 
 	draw(obj) {
 
-		this.ctx.drawImage(this.droneImg, 95, obj.yPos * -1 + 455, 64, 64);
+		this.ctx.drawImage(this.droneImg, 95, obj.yPos * -3 + 195, 64, 64);
 
 	}
 
 	drawLandscape() {
 		this.ctx.beginPath();
 		this.ctx.fillStyle = '#009A17';
-		this.ctx.fillRect(0, 496, 256, 16);
+		this.ctx.fillRect(0, 236, 256, 16);
 		this.ctx.stroke();
 
 		this.ctx.beginPath();
 		this.ctx.fillStyle = 'SkyBlue';
-		this.ctx.fillRect(0, 0, 256, 496)
+		this.ctx.fillRect(0, 0, 256, 236)
 	}
 
 	drawGoal() {
 		const goalWidth = 34;
-		const topOfGoal = 239;
+		const topOfGoal = 59;
 		const bottomOfGoal = topOfGoal + goalWidth;
 
 		this.ctx.beginPath();

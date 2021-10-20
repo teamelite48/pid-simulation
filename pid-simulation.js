@@ -1,11 +1,10 @@
-var canvas = new Canvas(256, 512);
+var canvas = new Canvas(256, 252);
 var timer = new Timer();
-var pixelsPerMeter = 10;
-var fps = 120;
+var fps = 60;
 
 var pid = new PIDController();
 var drone = new Drone();
-var setpoint = 230;
+var setpoint = 50;
 
 setInterval(simulation, 1000/fps);
 
@@ -21,7 +20,7 @@ function simulation() {
 function updatePosition() {
 	var timestep = timer.nextTimestep();
 
-	drone.yPos += (drone.yVel - 9.8) * timestep * pixelsPerMeter;
+	drone.yPos += (drone.yVel - 9.8) * timestep;
 
 	if (drone.yPos <= 0) {
 		drone.yPos = 0;
@@ -34,8 +33,9 @@ function draw() {
 }
 
 function updateTelemetry() {
+	document.getElementById("setpoint").innerText = `${setpoint.toFixed(2)}m`
 	document.getElementById("altitude").innerText = `${drone.yPos.toFixed(2)}m`
-	document.getElementById("error").innerText = `${pid.error.toFixed(2)}m`;
+	document.getElementById("error").innerText = `${pid.error.toFixed(2)}`;
 	document.getElementById("p").innerText = `${pid.p.toFixed(2)}`;
 	document.getElementById("i").innerText = `${pid.i.toFixed(2)}`;
 	document.getElementById("d").innerText = `${pid.d.toFixed(2)}`;

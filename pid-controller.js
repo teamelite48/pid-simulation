@@ -1,7 +1,9 @@
 class PIDController {
-	kP = 5;
-	kI = 0.00002;
-	kD = 1.4;
+	timer = new Timer();
+
+	kP = 3;
+	kI = 0.15;
+	kD = 0;
 
 	error = 0;
 	prevError = 0;
@@ -13,11 +15,12 @@ class PIDController {
 	constructor() {}
 
 	calculate(measurement, setpoint) {
-		this.error = setpoint - measurement;
+		const elapsedTime = this.timer.nextTimestep();
+		this.error = (setpoint - measurement)/setpoint;
 
-		this.p = this.kP * (this.error/ setpoint);
-		this.i += this.kI * this.error;
-		this.d = this.kD * (this.error - this.prevError);
+		this.p = this.kP * this.error;
+		this.i += this.kI * (this.error * elapsedTime);
+		this.d = this.kD * ((this.error - this.prevError)/elapsedTime);
 
 		this.prevError = this.error;
 
