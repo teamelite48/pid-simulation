@@ -65,6 +65,7 @@ function updateTelemetry() {
 	setTelemetry("kDD", `${(pid.kD * pid.d).toFixed(2)}`);
 	setTelemetry("output", `${pid.output.toFixed(2)}`);
 	setTelemetry("velocity", `${(drone.yVel - gravity).toFixed(2)} m/s`);
+	setTelemetry("elapsedTime", timer.getElapsedTime());
 }
 
 function getInputValue(id) {
