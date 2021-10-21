@@ -1,22 +1,22 @@
 var canvas = new Canvas();
 var timer = new Timer();
-var fps = 60;
 
 var pid = new PIDController(0, 0, 0);
 var drone = new Drone();
 var setpoint = 50;
 var gravity = 9.8;
 
-var simulationLoop;
+var animationFrame = null;
 
 start();
 
 function start() {
-	endSimulationLoop();
-	beginSimulationLoop();
-}
 
-function beginSimulationLoop() {
+	if(animationFrame != null) {
+		cancelAnimationFrame(animationFrame);
+		animationFrame = null;
+	}
+
 	var kP = getInputValue("kP");
 	var kI = getInputValue("kI");
 	var kD = getInputValue("kD");
@@ -25,13 +25,7 @@ function beginSimulationLoop() {
 	pid = new PIDController(kP, kI, kD);
 	drone = new Drone();
 
-	simulationLoop = setInterval(simulation, 1000/fps);
-}
-
-function endSimulationLoop() {
-	if (simulationLoop) {
-		clearInterval(simulationLoop);
-	}
+	animationFrame = requestAnimationFrame(simulation);
 }
 
 function simulation() {
@@ -41,6 +35,8 @@ function simulation() {
 	updatePosition();
 	updateTelemetry();
 	canvas.draw(drone);
+
+	animationFrame = requestAnimationFrame(simulation);
 }
 
 function updatePosition() {
