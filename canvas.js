@@ -3,7 +3,7 @@ class Canvas {
 	height = 256;
 
 	constructor() {
-		var canvas = document.getElementById("canvas");
+		const canvas = document.getElementById("canvas");
 		canvas.width = this.width
 		canvas.height = this.height;
 
@@ -14,7 +14,7 @@ class Canvas {
 	}
 
 	draw(drone) {
-		this.clearCanvas();	
+		this.clearCanvas();
 		this.drawLandscape();
 		this.drawGoal();
 		this.drawDrone(drone)
@@ -55,6 +55,6 @@ class Canvas {
 	}
 
 	drawDrone(drone) {
-		this.ctx.drawImage(this.droneImg, drone.xPos, drone.yPos * -3 + 200, 64, 64);	
+		this.ctx.drawImage(this.droneImg, drone.xPos, drone.yPos * -3 + 200, 64, 64);
 	}
 }

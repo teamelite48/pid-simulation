@@ -17,7 +17,7 @@ class PIDController {
 	}
 
 	calculate(measurement, setpoint) {
-		var timestep = this.timer.nextTimestep();
+		const timestep = this.timer.nextTimestep();
 		this.error = (setpoint - measurement) / setpoint;
 
 		this.p = this.error;
@@ -25,7 +25,6 @@ class PIDController {
 		this.d = (this.error - this.lastError) / timestep;
 
 		this.lastError = this.error;
-
 		this.output = this.kP * this.p + this.kI * this.i + this.kD * this.d;
 
 		return this.output;

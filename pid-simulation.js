@@ -1,12 +1,12 @@
-var canvas = new Canvas();
-var timer = new Timer();
+let canvas = new Canvas();
+let timer = new Timer();
 
-var pid = new PIDController(0, 0, 0);
-var drone = new Drone();
-var setpoint = 50;
-var gravity = 9.8;
+let pid = new PIDController(0, 0, 0);
+let drone = new Drone();
+let animationFrame = null;
 
-var animationFrame = null;
+const setpoint = 50;
+const gravity = 9.8;
 
 start();
 
@@ -17,9 +17,9 @@ function start() {
 		animationFrame = null;
 	}
 
-	var kP = getInputValue("kP");
-	var kI = getInputValue("kI");
-	var kD = getInputValue("kD");
+	const kP = getInputValue("kP");
+	const kI = getInputValue("kI");
+	const kD = getInputValue("kD");
 
 	timer = new Timer();
 	pid = new PIDController(kP, kI, kD);
@@ -29,7 +29,7 @@ function start() {
 }
 
 function simulation() {
-	var speed = pid.calculate(drone.getAltitude(), setpoint)
+	const speed = pid.calculate(drone.getAltitude(), setpoint)
 	drone.setMotorSpeed(speed);
 
 	updatePosition();
@@ -40,8 +40,8 @@ function simulation() {
 }
 
 function updatePosition() {
-	var timestep = timer.nextTimestep();
-	
+	const timestep = timer.nextTimestep();
+
 	drone.yPos += (drone.yVel - gravity) * timestep;
 
 	if (drone.yPos <= 0) {
