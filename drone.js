@@ -1,5 +1,5 @@
 class Drone {
-	maxVel = 15.8;
+	maxVel = 6;
 
 	constructor(){
 		this.xPos = 95,

@@ -42,7 +42,7 @@ function simulation() {
 function updatePosition() {
 	const timestep = timer.nextTimestep();
 
-	drone.yPos += (drone.yVel - gravity) * timestep;
+	drone.yPos += (drone.yVel - (0.5 * gravity * timestep )) * timestep;
 
 	if (drone.yPos <= 0) {
 		drone.yPos = 0;
@@ -62,7 +62,7 @@ function updateTelemetry() {
 	setTelemetry("output", `${pid.output.toFixed(2)}`);
 	setTelemetry("elapsedTime", timer.getElapsedTime());
 
-	let velocity = drone.yVel - gravity;
+	let velocity = drone.yVel;
 
 	if (drone.yPos == 0) {
 		velocity = 0;
